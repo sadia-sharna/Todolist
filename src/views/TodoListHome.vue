@@ -1,13 +1,13 @@
 <template>
 <div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
 
         </div>
-        <div class="col-md-8">
-            <div style="position:fixed;width:35rem;">
+        <div class="col-sm-5">
+            <!-- <div style="position:fixed;width:35rem;"> -->
 
-                <div class="input-group input-group-lg">
+                <!-- <div class="input-group input-group-lg">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -15,11 +15,12 @@
                     </div>
                     <input type="text" class="form-control" placeholder="What needs to be done?" aria-label="Search" aria-describedby="basic-addon2" ref="searchBox" />
 
-                </div>
-                <ul class="list-group">
+                </div> -->
+                <todo-entry/>
+                <todo-list/>
+                <!-- <ul class="list-group">
                     <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
 
-                        <!-- Filled-in rounded example -->
                         <div>
                             <label style="font-size: 1.25rem;">task 1</label>
                             <div class="round">
@@ -65,9 +66,10 @@
 
                     <a class="list-group-item  d-flex justify-content-between align-items-center ml-2 list-border-2"> </a>
 
-                </ul>
+                </ul> -->
 
-            </div>
+            <!-- </div> -->
+           
         </div>
 
     </div>
@@ -76,7 +78,15 @@
 </template>
 
 <script>
+import TodoEntry from '@/components/TodoEntry.vue';
+import TodoList from '@/components/TodoList.vue';
+
 export default {
+    name:'TodoListHome',
+    components:{
+        TodoEntry,
+        TodoList
+    },
     data() {
         return {
 
@@ -173,10 +183,7 @@ export default {
     line-height: 1.5 !important;
 }
 
-.del {
-    text-decoration: line-through;
-    color: silver;
-}
+
 
 .u {
     text-decoration: underline;

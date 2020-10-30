@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'TodoList',
-    component: () => import('../views/TodoList.vue')
+    component: () => import('../views/TodoListHome.vue')
   }
 ]
 
