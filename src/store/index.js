@@ -55,12 +55,18 @@ export default new Vuex.Store({
 
 
     },
+    EditTodo(state, todoItem) {
+      let todo = state.todoList.find(x=>x.id == todoItem.id);
+      if(todo) todo.title = todoItem.title;
+
+
+    },
     ChangeTodoStatus(state, todoItem) {
       todoItem.status = !todoItem.status;
     },
     ClearCompletedTodos(state,completedList){
-     // let a = state.todoList.filter(x=>x.status==true);
-      for(var i=0; i <completedList.length; i++){
+
+      for(let i=0; i <completedList.length; i++){
         let todoIndex = state.todoList.indexOf(completedList[i]);
         state.todoList.splice(todoIndex, 1);
         
@@ -78,6 +84,11 @@ export default new Vuex.Store({
       commit('DeleteTodo', payload);
 
     },
+     
+    EditTodoItem({ commit },payload) {
+      commit('EditTodo',payload);
+
+    },
     ChangeTodoStatus({ commit }, payload) {
       commit('ChangeTodoStatus', payload);
 
@@ -86,6 +97,8 @@ export default new Vuex.Store({
       commit('ClearCompletedTodos',payload);
 
     },
+   
+    
     
    
     

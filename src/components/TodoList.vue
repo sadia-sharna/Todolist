@@ -4,7 +4,7 @@
     <ul class="list-group">
         <todo-item v-for="(item,index) in todos" :key="index" :todoItem="item" />
 
-        <a class="list-group-item  d-flex justify-content-between align-items-center" style="padding: 0.3rem 0.25rem!important;">
+        <a class="list-group-item  d-flex justify-content-between align-items-center" style="padding: 0.3rem 0.25rem!important;" v-if="allTodos.length>0">
 
             <div class="text-right ml-2"><small>{{activeTodoCount}} items left</small></div>
             <div class="text-center">
@@ -27,9 +27,9 @@
             <div class="text-left btn u" @click="clearCompleted();"><small>Clear Completed</small></div>
 
         </a>
-        <a class="list-group-item  d-flex justify-content-between align-items-center ml-1 list-border-1"> </a>
+        <a class="list-group-item  d-flex justify-content-between align-items-center ml-1 list-border-1" v-if="allTodos.length>0"> </a>
 
-        <a class="list-group-item  d-flex justify-content-between align-items-center ml-2 list-border-2"> </a>
+        <a class="list-group-item  d-flex justify-content-between align-items-center ml-2 list-border-2" v-if="allTodos.length>0"> </a>
 
     </ul>
 </div>
@@ -50,6 +50,7 @@ export default {
             mouseOverActive: false,
             navigate: 'All',
             todos:[],
+           
 
         };
     },
@@ -57,6 +58,10 @@ export default {
 
         activeTodoCount() {
             return this.$store.getters.activeTodoCount;
+
+        },
+        allTodos(){
+            return this.$store.getters.allTodoList;
 
         }
 
@@ -83,3 +88,20 @@ export default {
     }
 };
 </script>
+<style scoped>
+.list-border-1{
+    padding: 0.16rem 0.1rem!important;width:98%
+}
+.list-border-2{
+    padding: 0.16rem 0.1rem!important;width:97%
+}
+
+.u {
+    text-decoration: underline;
+}
+.btn-padding {
+    padding: 0.175rem 0.55rem !important;
+    line-height: 1.5 !important;
+}
+
+</style>
