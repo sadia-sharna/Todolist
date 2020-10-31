@@ -5,7 +5,7 @@
         <label style="font-size: 1.25rem;" :class="{completed: todoItem.status}">{{todoItem.title}}</label>
         <div class="round">
 
-            <input type="checkbox" :id="todoItem.id" @click="ChangeTodoStatus();"/>
+            <input type="checkbox" :id="todoItem.id" @click="ChangeTodoStatus();" v-model="todoItem.status"/>
             <label :for="todoItem.id"></label>
 
         </div>

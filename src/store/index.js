@@ -19,15 +19,16 @@ export default new Vuex.Store({
     ],
   },
   getters:{
+
    
     activeTodoCount(state){
       return state.todoList.filter(x=>x.status==false).length;
     },
     activeTodoList(state) {
-      return state.todoList.filter(x=>x.status==false)
+      return state.todoList.filter(x=>x.status==false);
     },
     completedTodoList(state) {
-      return state.todoList.filter(x=>x.status==true)
+      return state.todoList.filter(x=>x.status==true);
     },
     allTodoList(state){
       return state.todoList;
@@ -37,14 +38,15 @@ export default new Vuex.Store({
   mutations: {
     AddNewTodo(state, todoItem) {
       let findTodo = state.todoList.find(x => x.title == todoItem && x.status == false);
-     
+      let todoId = state.todoList.length == 0?0 :state.todoList[state.todoList.length-1].id;
       if (findTodo == undefined) {
         state.todoList.push({
-          id: state.todoList[state.todoList.length-1].id + 1,
+          id: todoId + 1,
           title: todoItem,
           status: false
         });
       }
+      else alert("Already Exist!");
 
     },
     DeleteTodo(state, todoItem) {
@@ -56,6 +58,14 @@ export default new Vuex.Store({
     ChangeTodoStatus(state, todoItem) {
       todoItem.status = !todoItem.status;
     },
+    ClearCompletedTodos(state,completedList){
+     // let a = state.todoList.filter(x=>x.status==true);
+      for(var i=0; i <completedList.length; i++){
+        let todoIndex = state.todoList.indexOf(completedList[i]);
+        state.todoList.splice(todoIndex, 1);
+        
+      }
+    }
     
 
   },
@@ -72,6 +82,11 @@ export default new Vuex.Store({
       commit('ChangeTodoStatus', payload);
 
     },
+    ClearCompletedTodos({ commit },payload) {
+      commit('ClearCompletedTodos',payload);
+
+    },
+    
    
     
 
